@@ -1,10 +1,8 @@
 Gloss Demo
 ==========
 
-Just a demo application using the [Gloss] library. In the future I intend
-for this to display a numerical simulation of a pendulum but for now it
-is simply a rotating line.
-
+Just a demo application using the [Gloss] library that displays a crude
+simulation of a single, undamped pendulum.
 
 Building
 --------

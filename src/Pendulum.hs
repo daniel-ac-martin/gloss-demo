@@ -12,6 +12,16 @@ module Pendulum
   , step
   ) where
 
+import Prelude
+  ( Float
+  , (.)
+  , ($)
+  , (*)
+  , (/)
+  , (+)
+  , sin
+  )
+
 import qualified Angle as Angle
   ( Angle
   , fromDegrees
@@ -36,6 +46,18 @@ type StepSize = Float
 
 step :: Pendulum -> StepSize -> State -> State
 step p delta s = State
-  { angle = Angle.fromRadians . (+ delta) . Angle.toRadians . angle $ s
-  , angularVelocity = angularVelocity s
+  { angle = Angle.fromRadians $ theta + deltaTheta
+  , angularVelocity = Angle.fromRadians $ omega + deltaOmega
   }
+  where
+    theta :: Float
+    theta = Angle.toRadians . angle $ s
+    omega :: Float
+    omega = Angle.toRadians . angularVelocity $ s
+    deltaTheta :: Float
+    deltaTheta = delta * omega
+    deltaOmega :: Float
+    deltaOmega = delta * (-(g / l) * sin(theta))
+      where
+        g = 9.81
+        l = length p
