@@ -52,7 +52,7 @@ main = Gloss.simulate display background fps initialModel render step
         windowPosition :: (Int, Int)
         windowPosition = (0, 0)
     fps :: Int
-    fps = 30
+    fps = 60
     initialModel :: Pendulum.State
     initialModel = Pendulum.State
       { Pendulum.angle = Pendulum.fromDegrees 30
